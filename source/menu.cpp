@@ -62,6 +62,10 @@ static void _agregarPersonaje(List<Personaje*> &listaPersonajes, string nombre){
 static void _eliminarPersonaje(List<Personaje*> &listaPersonajes, string nombre){
 	cout << "--- ELIMINAR PERSONAJE ---" << endl << endl;
 	
+	if (listaPersonajes.empty()){
+		cout << "La lista está vacía." << endl;
+		return;
+	}
 	if(listaPersonajes.search(nombre, Personaje::compararNombre) != NULL)
 		listaPersonajes.remove();
 	else
@@ -74,7 +78,7 @@ static void _mostrarNombresPersonajes(List<Personaje*> &listaPersonajes, string 
 	
 	size_t i = 1;
 	while (i <= listaPersonajes.length()){
-		cout << listaPersonajes.get(i)->nombre() << endl;
+		cout << '('<< i << ')' << listaPersonajes.get(i)->nombre() << endl;
 		i++;
 	}
 }

@@ -220,9 +220,11 @@ void List <T>::popLast(){
 	if (_current == _last)
 		reboot();
 
-	while(_current->getNext() != _last)	//Esto lo tengo que hacer porque es simplemente enlazada
+	while(_current->getNext() != _last)	
 		_current = _current->getNext();
 
+	//current->next == _last
+	_current->setNext(NULL);
 	_last = _current;
 	delete aux;
 	_size--;
@@ -232,7 +234,7 @@ void List <T>::popLast(){
 
 template <typename T>
 void List <T>::remove(){
-	if (!empty() && _current != NULL){
+	if (!empty() && _current != NULL && _current != _first && _current != _last){
 		Node<T> *aux = _first;
 
 		while(aux->getNext() != _current)
@@ -244,6 +246,10 @@ void List <T>::remove(){
 		delete aux;
 		_size--;
 	}
+	else if (_current == _first)
+		popFirst();
+	else if (_current == _last)
+		popLast();
 }
 
 
